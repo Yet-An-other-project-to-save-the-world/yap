@@ -21,6 +21,9 @@ jobs:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
       
+      # This will match your Repository name when using GitHub Pages
+      NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
+      
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
