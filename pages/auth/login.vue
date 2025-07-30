@@ -63,7 +63,7 @@
             block
             >Sign In with Email</UButton
           >
-          <div class="text-right">
+          <div class="text-center">
             <NuxtLink
               to="/auth/recover-pw"
               class="text-xs text-muted-foreground underline underline-offset-4 hover:text-primary"
