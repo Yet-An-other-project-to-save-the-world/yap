@@ -1,16 +1,17 @@
 <template>
-  <div
-    class="relative flex min-h-screen flex-col items-center justify-center lg:grid lg:grid-cols-2"
-  >
-    <!-- Left Panel: Unchanged, but will now behave correctly within the new grid -->
+  <!-- Main container: A simple grid on desktop, standard block on mobile. -->
+  <div class="lg:grid lg:grid-cols-2 lg:h-screen">
+    <!-- Left Panel -->
     <div
       class="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r dark:border-zinc-900"
     >
-      <div class="absolute inset-0 z-20 bg-zinc-900">
+      <!-- Background elements with a lower z-index to stay in the back -->
+      <div class="absolute inset-0 z-0 bg-zinc-900">
         <HomeScreenNoise class="opacity-90" />
         <HomeScreenGradient />
       </div>
-      <div class="relative z-30 flex h-full flex-col justify-between">
+      <!-- Content with a higher z-index to be on top of the background -->
+      <div class="relative z-10 flex h-full flex-col justify-between">
         <StructureLogo />
         <div class="my-auto">
           <div class="text-left">
@@ -31,12 +32,12 @@
       </div>
     </div>
 
-    <!-- Right Panel (The Form): Now with improved responsive behavior -->
+    <!-- Right Panel (The Form) -->
     <div
-      class="flex w-full items-center p-8 overflow-y-auto lg:justify-center"
+      class="relative flex min-h-screen flex-col items-center justify-start overflow-y-auto p-8 pt-20 lg:min-h-0 lg:items-center lg:justify-center lg:pt-8"
     >
-      <!-- This inner div constrains the form width on mobile and centers it -->
-      <div class="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-md">
+      <!-- Inner div to constrain form width -->
+      <div class="w-full max-w-sm">
         <NuxtPage />
       </div>
     </div>
@@ -44,5 +45,6 @@
 </template>
 
 <script setup>
-
+// No script changes needed.
 </script>
+
