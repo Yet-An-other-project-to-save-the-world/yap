@@ -3,48 +3,39 @@
     class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px] z-40"
   >
     <div class="flex flex-col space-y-2 text-center">
-      <h1 class="text-2xl font-semibold tracking-tight">Create an account</h1>
+      <h1 class="text-2xl font-semibold tracking-tight">Update your password</h1>
       <p class="text-sm text-muted-foreground">
-        Enter your email below to create your account
-      </p>
-      <p class="text-sm text-muted-foreground">
-        <NuxtLink
-          to="/auth/login"
-          class="underline underline-offset-4 hover:text-primary"
-        >
-          Already have an account? Sign In
-        </NuxtLink>
+        Enter a new password for your account below.
       </p>
     </div>
     <div class="grid gap-6">
-      <form @submit.prevent="register">
+      <form @submit.prevent="updatePassword">
         <div class="grid gap-4">
-          <div>
+          <!-- Display the user's email, but make it non-editable -->
+          <div v-if="userEmail">
             <label
-              class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              class="text-xs font-medium leading-8"
               for="email"
               >Email</label
             >
             <UInput
-              v-model="email"
-              placeholder="name@example.com"
+              :model-value="userEmail"
               type="email"
-              autocapitalize="none"
-              autocomplete="email"
-              autocorrect="off"
-              required
+              disabled
             />
           </div>
+
+          <!-- Password input fields -->
           <div class="space-y-2">
             <div>
               <label
                 class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 for="password"
-                >Password</label
+                >New Password</label
               >
               <UInput
                 v-model="password.value"
-                placeholder="Password"
+                placeholder="New Password"
                 type="password"
                 autocapitalize="none"
                 autocorrect="off"
@@ -55,11 +46,11 @@
               <label
                 class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 for="confirm-password"
-                >Confirm Password</label
+                >Confirm New Password</label
               >
               <UInput
                 v-model="password.confirm"
-                placeholder="Confirm Password"
+                placeholder="Confirm New Password"
                 type="password"
                 autocapitalize="none"
                 autocorrect="off"
@@ -70,16 +61,13 @@
           <UButton
             type="submit"
             color="emerald"
-            :disabled="!registerValid"
+            :disabled="!updateValid"
             :loading="loading"
             block
-            >Sign Up With Email</UButton
+            >Update Password</UButton
           >
         </div>
       </form>
-      <div class="relative">
-        <UDivider label="Or continue with" />
-        </div>
     </div>
   </div>
 </template>
@@ -88,55 +76,53 @@
 import { ref, reactive, computed } from "vue";
 
 definePageMeta({
-  auth: false,
+  auth: false, // Allow access without being logged in
 });
 
 // Get utilities from Nuxt composables
 const supabase = useSupabaseClient();
 const router = useRouter();
 const toast = useToast();
+// Get the user session from the recovery link
+const user = useSupabaseUser();
 
 // Component state
 const loading = ref(false);
-const email = ref("");
+const userEmail = computed(() => user.value?.email);
 const password = reactive({
   value: "",
   confirm: "",
 });
 
 // Form validation
-const emailValid = computed(() => email.value.length > 0);
 const passwordValid = computed(() => password.value.length > 6);
 const passwordMatch = computed(() => password.value === password.confirm && password.value.length > 0);
-const registerValid = computed(() => emailValid.value && passwordValid.value && passwordMatch.value);
+const updateValid = computed(() => passwordValid.value && passwordMatch.value);
 
-// Register function
-async function register() {
-  if (!registerValid.value) return; // Prevent submission if form is invalid
-  
+// Update password function
+async function updatePassword() {
+  if (!updateValid.value) return;
+
   loading.value = true;
-  const { error } = await supabase.auth.signUp({
-    email: email.value,
+  const { error } = await supabase.auth.updateUser({
     password: password.value,
   });
 
   if (error) {
-    // Show an error toast
     toast.add({
-      title: 'Registration Error',
+      title: 'Error updating password',
       description: error.message,
       icon: 'i-heroicons-x-circle',
       color: 'red'
     });
   } else {
-    // Show a success toast
     toast.add({
       title: 'Success!',
-      description: "Please check your email to verify your account.",
+      description: 'Your password has been updated. Please log in.',
       icon: 'i-heroicons-check-circle',
       color: 'green'
     });
-    // Redirect to the login page
+    // Redirect to the login page after successful update
     router.push("/auth/login");
   }
 
