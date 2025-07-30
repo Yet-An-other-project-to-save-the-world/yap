@@ -23,7 +23,7 @@
             <label
               class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               for="email"
-              >Email</label
+              >E-mail</label
             >
             <UInput
               v-model="email"

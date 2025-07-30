@@ -19,7 +19,7 @@
     <div class="grid gap-6">
       <form @submit.prevent="signInWithEmailPassword">
         <div class="grid gap-4">
-          <div class="space-y-2">
+          <div>
             <div>
               <label
                 class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -37,7 +37,7 @@
                 required
               />
             </div>
-            <div>
+            <div class="space-y-2">
               <label
                 class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 for="password"

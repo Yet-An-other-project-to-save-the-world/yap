@@ -1,6 +1,6 @@
 <template>
   <!-- Main container: A simple grid on desktop, standard block on mobile. -->
-  <div class="lg:grid lg:grid-cols-2 lg:h-screen">
+  <div class="lg:grid lg:grid-cols-2 lg:h-screen overflow-x-hidden">
     <!-- Left Panel -->
     <div
       class="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r dark:border-zinc-900"
