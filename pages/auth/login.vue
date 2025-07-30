@@ -27,7 +27,6 @@
             >
             <UInput
               v-model="form.email"
-              color="white"
               placeholder="name@example.com"
               type="email"
               autocapitalize="none"
@@ -37,21 +36,22 @@
             />
           </div>
           <div class="space-y-2">
-            <label
-              class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              for="password"
-              >Password</label
-            >
-            <UInput
-              v-model="form.password"
-              color="white"
-              placeholder="Password"
-              type="password"
-              autocapitalize="none"
-              autocomplete="none"
-              autocorrect="off"
-              required
-            />
+            <div>
+              <label
+                class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="password"
+                >Password</label
+              >
+              <UInput
+                v-model="form.password"
+                placeholder="Password"
+                type="password"
+                autocapitalize="none"
+                autocomplete="none"
+                autocorrect="off"
+                required
+              />
+            </div>
           </div>
           <UButton
             type="submit"
