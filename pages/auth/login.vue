@@ -37,11 +37,19 @@
           </div>
           <div class="space-y-2">
             <div>
-              <label
-                class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="password"
-                >Password</label
-              >
+              <!-- This new div creates the flex container -->
+              <div class="flex justify-between items-center">
+                <label
+                  class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="password"
+                  >Password</label
+                >
+                <NuxtLink
+                  to="/auth/recover-pw"
+                  class="text-xs text-muted-foreground underline underline-offset-4 hover:text-primary"
+                  >Forgot the password? Reset it
+                </NuxtLink>
+              </div>
               <UInput
                 v-model="form.password"
                 placeholder="Password"
@@ -61,13 +69,6 @@
             block
             >Sign In with Email</UButton
           >
-          <div class="text-center">
-            <NuxtLink
-              to="/auth/recover-pw"
-              class="text-xs text-muted-foreground underline underline-offset-4 hover:text-primary"
-              >Forgot the password? Reset it
-            </NuxtLink>
-          </div>
         </div>
       </form>
       <div class="relative">
