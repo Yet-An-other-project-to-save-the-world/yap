@@ -7,3 +7,14 @@
 * {
   font-family: "Gheist", sans-serif;
 }
+
+/* Prevents iOS zoom on input focus */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+textarea {
+  font-size: 16px;
+}
