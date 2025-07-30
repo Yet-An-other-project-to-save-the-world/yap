@@ -106,7 +106,7 @@ const password = reactive({
 
 // Form validation
 const emailValid = computed(() => email.value.length > 0);
-const passwordValid = computed(() => password.value.length > 6);
+const passwordValid = computed(() => password.value.length >= 6);
 const passwordMatch = computed(() => password.value === password.confirm && password.value.length > 0);
 const registerValid = computed(() => emailValid.value && passwordValid.value && passwordMatch.value);
 
