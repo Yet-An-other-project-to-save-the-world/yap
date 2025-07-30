@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.NUXT_APP_BASE_URL || '/'
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
+    head: {
+      link: [
+        // Set a relationship and a type for the browser
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    },
   },
   devtools: { enabled: false },
   modules: [
