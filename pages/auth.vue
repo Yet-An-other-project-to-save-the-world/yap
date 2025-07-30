@@ -6,7 +6,7 @@
       class="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r dark:border-zinc-900"
     >
       <!-- Background elements with a lower z-index to stay in the back -->
-      <div class="absolute inset-0 z-0 bg-zinc-900">
+      <div class="absolute inset-0 z-0 bg-zinc-900 overflow-hidden">
         <HomeScreenNoise class="opacity-90" />
         <HomeScreenGradient />
       </div>
