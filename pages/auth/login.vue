@@ -20,40 +20,38 @@
       <form @submit.prevent="signInWithEmailPassword">
         <div class="grid gap-4">
           <div>
-            <div>
-              <label
-                class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="email"
-                >E-mail</label
-              >
-              <UInput
-                v-model="form.email"
-                color="white"
-                placeholder="name@example.com"
-                type="email"
-                autocapitalize="none"
-                autocomplete="email"
-                autocorrect="off"
-                required
-              />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="password"
-                >Password</label
-              >
-              <UInput
-                v-model="form.password"
-                color="white"
-                placeholder="Password"
-                type="password"
-                autocapitalize="none"
-                autocomplete="none"
-                autocorrect="off"
-                required
-              />
-            </div>
+            <label
+              class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="email"
+              >E-mail</label
+            >
+            <UInput
+              v-model="form.email"
+              color="white"
+              placeholder="name@example.com"
+              type="email"
+              autocapitalize="none"
+              autocomplete="email"
+              autocorrect="off"
+              required
+            />
+          </div>
+          <div class="space-y-2">
+            <label
+              class="text-xs font-medium leading-8 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="password"
+              >Password</label
+            >
+            <UInput
+              v-model="form.password"
+              color="white"
+              placeholder="Password"
+              type="password"
+              autocapitalize="none"
+              autocomplete="none"
+              autocorrect="off"
+              required
+            />
           </div>
           <UButton
             type="submit"
