@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     head: {
       link: [
         // Set a relationship and a type for the browser
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
       ]
     },
   },
