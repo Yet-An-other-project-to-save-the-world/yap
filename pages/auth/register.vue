@@ -118,6 +118,9 @@ async function register() {
   const { error } = await supabase.auth.signUp({
     email: email.value,
     password: password.value,
+    options: {
+      emailRedirectTo: process.env.NUXT_APP_BASE_URL || '/',
+    },
   });
 
   if (error) {
