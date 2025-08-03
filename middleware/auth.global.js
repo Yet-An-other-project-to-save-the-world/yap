@@ -44,7 +44,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (toAuth || toAuth === undefined) {
     // return !authenticated ? navigateTo('/login') : null
     if (!authenticated) {
-      return navigateTo(loginRoute);
+      return navigateTo(registerRoute);
     } else {
       return;
     }

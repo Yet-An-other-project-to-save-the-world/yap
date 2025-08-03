@@ -79,7 +79,21 @@
       </form>
       <div class="relative">
         <UDivider label="Or continue with" />
-        </div>
+      </div>
+      <div class="flex flex-col space-y-4">
+        <UButton
+          block
+          color="white"
+          v-for="provider in providers"
+          :key="provider.name"
+          @click="provider.auth"
+        >
+          <template #leading>
+            <UIcon :name="provider.icon" class="mr-2 h-4 w-4" />
+          </template>
+          Sign in with {{ provider.name }}
+        </UButton>
+      </div>
     </div>
   </div>
 </template>
@@ -103,6 +117,16 @@ const password = reactive({
   value: "",
   confirm: "",
 });
+
+const providers = [
+  {
+    name: "Discord",
+    icon: "i-ri-discord-fill",
+    auth: () => {
+      supabase.auth.signInWithOAuth({ provider: "discord" });
+    },
+  },
+];
 
 // Form validation
 const emailValid = computed(() => email.value.length > 0);

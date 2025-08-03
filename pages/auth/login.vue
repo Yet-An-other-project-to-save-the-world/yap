@@ -73,7 +73,7 @@
       </form>
       <div class="relative">
         <UDivider label="Or continue with" />
-        </div>
+      </div>
       <div class="flex flex-col space-y-4">
         <UButton
           block
@@ -117,23 +117,16 @@ const toast = useToast();
 // Component state
 const loading = ref(false);
 const form = reactive({
-  email: "test@github.com",
-  password: "password",
+  email: "",
+  password: "",
 });
 
 const providers = [
   {
-    name: "Google",
-    icon: "i-ri-google-fill",
+    name: "Discord",
+    icon: "i-ri-discord-fill",
     auth: () => {
-      supabase.auth.signInWithOAuth({ provider: "google" });
-    },
-  },
-  {
-    name: "GitHub",
-    icon: "i-ri-github-fill",
-    auth: () => {
-      supabase.auth.signInWithOAuth({ provider: "github" });
+      supabase.auth.signInWithOAuth({ provider: "discord" });
     },
   },
 ];
