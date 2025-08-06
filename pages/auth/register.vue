@@ -126,7 +126,7 @@ const providers = [
       supabase.auth.signInWithOAuth({
         provider: "discord",
         options: {
-          redirectTo: `https://yet-an-other-project-to-save-the-world.github.io/yap/user/dashboard/`,
+          redirectTo: "https://yet-an-other-project-to-save-the-world.github.io/yap/user/dashboard/",
         }
       });
     },
