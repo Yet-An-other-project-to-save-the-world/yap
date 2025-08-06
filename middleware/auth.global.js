@@ -6,30 +6,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const { meta: toMeta } = to;
   const { auth: toAuth } = toMeta;
 
-  const supabase = useSupabaseClient();
-  // const userStore = useUserStore();
-  // Returns the current user or false
-  const getCurrentUser = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    // Check if session exists
-    if (!session) {
-      return false;
-    }
-
-    // Check if user exists
-    const { data, error } = await supabase.auth.getUser();
-    if (error) {
-      return false;
-    }
-    const { user } = data;
-    return user;
-  };
-
-  const user = await getCurrentUser();
-  const authenticated = user ? true : false;
+  const user = useSupabaseUser();
+  const authenticated = !!user.value;
 
   if (to.path === loginRoute && authenticated) {
     return navigateTo(authenticatedBasePath);
