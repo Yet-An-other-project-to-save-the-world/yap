@@ -126,7 +126,12 @@ const providers = [
     name: "Discord",
     icon: "i-ri-discord-fill",
     auth: () => {
-      supabase.auth.signInWithOAuth({ provider: "discord" });
+      supabase.auth.signInWithOAuth({
+        provider: "discord",
+        options: {
+          redirectTo: "https://yet-an-other-project-to-save-the-world.github.io/yap/user/dashboard/",
+        }
+      });
     },
   },
 ];
